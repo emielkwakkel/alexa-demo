@@ -7,5 +7,5 @@ export function handleCountryCheckIntent(intent, session, callback) {
     const output = 'Sogeti in ' + country;
 
     callback(session.attributes,
-        buildSpeechletResponse(title, output, undefined, true));
+        buildSpeechletResponse(title, output, '', true));
 }
