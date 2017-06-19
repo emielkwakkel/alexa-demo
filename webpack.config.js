@@ -5,8 +5,8 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        'sogeti': [ 'babel-polyfill', './lambdas/sogeti.js' ],
-        'sogeti.min': [ 'babel-polyfill', './lambdas/sogeti.js' ]
+        'sogeti': [ 'babel-polyfill', './src/index.js' ],
+        'sogeti.min': [ 'babel-polyfill', './src/index.js' ]
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -19,7 +19,6 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
                     presets: ['es2015'],
@@ -28,7 +27,7 @@ module.exports = {
             },
             {
                 test: /\.json$/,
-                loader: 'json'
+                loader: 'json-loader'
             }
         ]
     },
