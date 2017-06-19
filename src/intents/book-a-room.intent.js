@@ -1,62 +1,52 @@
-import {moment} from 'moment/moment';
-
 export function bookARoom() {
-    const intent = this.event.request.intent;
+    const filledSlots = delegateSlotCollection.call(this),
+		intent = this.event.request.intent,
+		location = intent.slots.Location.value,
+		date = intent.slots.Date.value,
+		time = intent.slots.Time.value,
+		duration = intent.slots.Duration.value,
+		numberOfParticipants = intent.slots.NumberOfParticipants.value;
 
-    console.log(intent);
+	const speechOutput = `Booking a room at ${date}, ${time} at Sogeti ${location} for ${duration} hours and ${numberOfParticipants} participants.`;
 
-    if (!intent.slots.Location.value) {
-        console.log('location');
-        const slotToElicit = 'Location';
-        const speechOutput = 'In which Sogeti office is the meeting?';
-        const repromptSpeech = speechOutput;
-        const cardContent = 'In which Sogeti office is the meeting?';
-        const cardTitle = 'Location';
-        const updatedIntent = intent;
-        this.emit(':elicitSlotWithCard', slotToElicit, speechOutput, repromptSpeech, cardTitle, cardContent, updatedIntent);
-    } else if (!intent.slots.Date.value) {
-        console.log('date');
-        const slotToElicit = 'Date';
-        const speechOutput = 'What is the date of the meeting?';
-        const repromptSpeech = speechOutput;
-        const cardContent = 'What is the date of the meeting?';
-        const cardTitle = 'Date';
-        const updatedIntent = intent;
-        this.emit(':elicitSlotWithCard', slotToElicit, speechOutput, repromptSpeech, cardTitle, cardContent, updatedIntent);
-    } else if (!intent.slots.Time.value) {
-        console.log('time');
-        const slotToElicit = 'Time';
-        const speechOutput = 'What is the time of the meeting?';
-        const repromptSpeech = speechOutput;
-        const cardContent = 'What is the time of the meeting?';
-        const cardTitle = 'Time';
-        const updatedIntent = intent;
-        this.emit(':elicitSlotWithCard', slotToElicit, speechOutput, repromptSpeech, cardTitle, cardContent, updatedIntent);
-    } else if (!intent.slots.Duration.value) {
-        console.log('duration');
-        const slotToElicit = 'Duration';
-        const speechOutput = 'What is the duration of the meeting?';
-        const repromptSpeech = speechOutput;
-        const cardContent = 'What is the duration of the meeting?';
-        const cardTitle = 'Duration';
-        const updatedIntent = intent;
-        this.emit(':elicitSlotWithCard', slotToElicit, speechOutput, repromptSpeech, cardTitle, cardContent, updatedIntent);
-    } else if (!intent.slots.NumberOfParticipants.value) {
-        console.log('participants');
-        const slotToElicit = 'Participants';
-        const speechOutput = 'What are the number of participants?';
-        const repromptSpeech = speechOutput;
-        const cardContent = 'What are the number of participants?';
-        const cardTitle = 'Participants';
-        const updatedIntent = intent;
-        this.emit(':elicitSlotWithCard', slotToElicit, speechOutput, repromptSpeech, cardTitle, cardContent, updatedIntent);
-    } else {
-        handlePlanMyTripIntentAllSlotsAreFilled(intent);
-    }
-
+	this.emit(":tell",speechOutput);
 }
 
-function handlePlanMyTripIntentAllSlotsAreFilled(intent) {
-    console.log('all slots are filled', intent);
-    this.emit(':tell', `Booking a room in ${intent.slots.Location.value}, at ${intent.slots.Date.value}, ${intent.slots.Time.value} in ${intent.slots.Location.value} for ${intent.slots.NumberOfParticipants.value}`);
+function delegateSlotCollection(){
+	if (this.event.request.dialogState === "STARTED") {
+		console.log("Dialog started");
+
+		const updatedIntent = this.event.request.intent;
+		this.emit(":delegate", updatedIntent);
+	} else if (this.event.request.dialogState !== "COMPLETED") {
+		console.log("Dialog in progress");
+
+		this.emit(":delegate");
+	} else {
+		console.log("Dialog completed");
+
+		return this.event.request.intent;
+	}
+}
+
+function randomPhrase(array) {
+	// the argument is an array [] of words or phrases
+	let i = 0;
+	i = Math.floor(Math.random() * array.length);
+	return(array[i]);
+}
+
+function isSlotValid(request, slotName){
+	let slot = request.intent.slots[slotName],
+		slotValue;
+
+	//if we have a slot, get the text and store it into speechOutput
+	if (slot && slot.value) {
+		//we have a value in the slot
+		slotValue = slot.value.toLowerCase();
+		return slotValue;
+	} else {
+		//we didn't get a value in the slot.
+		return false;
+	}
 }
