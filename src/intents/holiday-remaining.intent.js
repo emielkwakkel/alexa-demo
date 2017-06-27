@@ -1,3 +1,5 @@
+import { randomPhrase } from '../common/random-phrase';
+
 export function holidayRemaining() {
 	const daysRemaining = 20;
 
@@ -7,11 +9,4 @@ export function holidayRemaining() {
 	];
 
 	this.emit(":tell", randomPhrase(speechOutput));
-}
-
-function randomPhrase(array) {
-	// the argument is an array [] of words or phrases
-	let i = 0;
-	i = Math.floor(Math.random() * array.length);
-	return(array[i]);
 }
