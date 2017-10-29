@@ -5,8 +5,8 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        'sogeti': [ 'babel-polyfill', './src/index.js' ],
-        'sogeti.min': [ 'babel-polyfill', './src/index.js' ]
+        'index': [ 'babel-polyfill', './src/index.js' ],
+        'index.min': [ 'babel-polyfill', './src/index.js' ]
     },
     output: {
         path: path.join(__dirname, 'dist'),
