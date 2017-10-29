@@ -1,0 +1,32 @@
+{
+  "extends": ["airbnb-base"],
+  "env": {
+      "browser": true
+  },
+  "globals": {
+    "afterEach": true,
+    "angular": true,
+    "beforeEach": true,
+    "browser": true,
+    "by": true,
+    "describe": true,
+    "document": true,
+    "element": true,
+    "expect": true,
+    "fit": true,
+    "inject": true,
+    "it": true,
+    "moment": true,
+    "protractor": true,
+    "readJSON": true,
+    "spyOn": true,
+    "windowMock": true,
+    "xit": true
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "linebreak-style": "off",
+    "no-use-before-define": "off",
+    "no-plusplus": "off",
+  }
+}
