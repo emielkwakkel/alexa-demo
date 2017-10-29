@@ -9,9 +9,10 @@ import { unhandled } from './unhandled.intent';
 export const handlers = {
     'BookARoom': bookARoom,
     'CountryCheck': countryCheck,
-	'HolidayRemaining': holidayRemaining,
+    'ConferenceOpen': conferenceOpen,
+    'HolidayRemaining': holidayRemaining,
     'EmployeeStatistics': employeeStatistics,
     'MealsOverview': mealsOverview,
-	'Unhandled': unhandled,
-	'LaunchRequest': launchRequest
+    'Unhandled': unhandled,
+    'LaunchRequest': launchRequest
 };
