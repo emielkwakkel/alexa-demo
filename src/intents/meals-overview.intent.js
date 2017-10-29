@@ -41,7 +41,12 @@ export function mealsOverview() {
 }
 
 function filterMeals(meals, location, date) {
-	console.log(meals, meals.length, location, date);
+	console.log(
+		'meals: ', meals,
+		'meals length: ', meals.length,
+		'location: ', location,
+		'date: ', date);
+
 	if (meals && meals.length > 0) {
 		if (location && date) {
 			return meals.filter(meal => {
