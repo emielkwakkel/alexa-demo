@@ -44,7 +44,7 @@ function getSpeakersIntroduction(part) {
     },
   ];
 
-  let speakersIntroduction;
+  let speakersIntroduction = '';
 
   speakers.forEach((speaker) => {
     if (speaker.part === part) {
