@@ -10,7 +10,8 @@ export function conferenceOpen() {
     <p>'Let me anounce to you: '${speakersPartOne}<break time="0.5s" /></p>`;
   const speechPartTwo = `
     <p>'After the break: '${speakersPartTwo}<break time="0.5s" /></p>
-    <p>I hope you will all enjoy this evening!</p>`;
+    <p>I hope you will all enjoy this evening!</p>
+    <p>Chris, the floor is yours!</p>`;
 
   const repromptSpeech = 'Could you say that again?';
   const updatedIntent = this.event.request.intent;
@@ -21,7 +22,7 @@ export function conferenceOpen() {
     this.emit(':ask', speechPartOne, repromptSpeech);
     updatedIntent.slots.BeforeAfter.value = null;
   } else if (updatedIntent.slots.BeforeAfter && updatedIntent.slots.BeforeAfter.value === 'after') {
-    this.emit(':ask', speechPartTwo, repromptSpeech);
+    this.emit(':tell', speechPartTwo, repromptSpeech);
     updatedIntent.slots.BeforeAfter.value = null;
   } else {
     this.emit(':ask', introduction, repromptSpeech);
@@ -38,14 +39,14 @@ function getSpeakersIntroduction(part) {
       part: 1,
     },
     {
-      name: 'Emiel',
-      talk: 'introduce you to Amazon Alexa, and how to build a skill using Node.js and, Amazon AWS and Alexa',
-      part: 1,
-    },
-    {
       name: 'Peter',
       talk: 'tell you about the Sogeti Vacency Bot. From concept to finished bot using the Microsoft Conversation Designer. Peter will give an exclusive preview of this framework!',
       part: 1,
+    },
+    {
+      name: 'Emiel',
+      talk: 'introduce you to Amazon Alexa, and how to build a skill using Node.js and, Amazon AWS and Alexa',
+      part: 2,
     },
     {
       name: 'Mark',
