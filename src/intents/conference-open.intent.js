@@ -7,10 +7,11 @@ export function conferenceOpen() {
     <p>${pronounceSogeti}</p>`;
   const speechPartOne = `
     <p>Today we have a very interesting lineup arranged for you.</p>
-    <p>'Let me anounce to you: '${speakersPartOne}<break time="0.5s" /></p>`;
+    <p>Let me anounce to you: ${speakersPartOne}<break time="0.5s" /></p>
+    <p>After this we'll have a break with some drinks, <emphasis level="strong">cheers</emphasis>!</p>`;
   const speechPartTwo = `
     <p>'After the break: '${speakersPartTwo}<break time="0.5s" /></p>
-    <p>I hope you will all enjoy this evening!</p>
+    <p>I hope you will all enjoy this evening!<break time="0.2s" /></p>
     <p>Chris, the floor is yours!</p>`;
 
   const repromptSpeech = 'Could you say that again?';
@@ -54,7 +55,7 @@ function getSpeakersIntroduction(part) {
       part: 2,
     },
     {
-      name: 'Thijs',
+      name: 'Thijs, did I pronounce that right? I\'m sorry, <phoneme alphabet="ipa" ph="thais">Thyis</phoneme>',
       talk: 'tell you about Digital Happiness! From Clippy to the first AI-Human romance! I\'m sure it won\'t happen to you, but in near future people will get into a relationship with a robot or AI. Which trends can we spot in the use of chatbots and how do they connect to the start of an emotional economy',
       part: 2,
     },
@@ -64,7 +65,7 @@ function getSpeakersIntroduction(part) {
 
   speakers.forEach((speaker) => {
     if (speaker.part === part) {
-      speakersIntroduction = `${speakersIntroduction} <p><emphasis level="strong">${speaker.name}</emphasis> is going to ${speaker.talk}!</p><break time="0.5s" />`;
+      speakersIntroduction = `${speakersIntroduction} <p>${speaker.name} is going to ${speaker.talk}!</p><break time="0.5s" />`;
     }
   });
 
