@@ -9,7 +9,13 @@ export function bookARoom() {
   const duration = intent.slots.Duration.value;
   const numberOfParticipants = intent.slots.NumberOfParticipants.value;
 
-  const speechOutput = `Booking a room at ${date}, ${time} at Sogeti ${location} for ${duration} hours and ${numberOfParticipants} participants.`;
+  console.log( // eslint-disable-line
+    `location: ${location},
+    date: ${date},
+    time: ${time},
+    duration: ${duration},
+    numberOfParticipants: ${numberOfParticipants}`,
+  );
 
-  this.emit(':tell', speechOutput);
+  this.emit(':tell', 'Done!');
 }
